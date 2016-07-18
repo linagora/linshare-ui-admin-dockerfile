@@ -1,6 +1,6 @@
 from httpd:2.4
 
-ARG VERSION="LATEST"
+ARG VERSION="2.6.0"
 ARG CHANNEL="releases"
 ARG EXT="com"
 
