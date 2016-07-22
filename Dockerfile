@@ -7,9 +7,7 @@ ARG EXT="com"
 RUN apt-get update && apt-get install wget bzip2 -y && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN echo "$CHANNEL" | grep "releases" 2>&1 > /dev/null && \
-URL="https://nexus.linagora.${EXT}/service/local/artifact/maven/content?r=linshare-${CHANNEL}&g=org.linagora.linshare&a=linshare-ui-admin&v=${VERSION}" \
-|| URL="https://nexus.linagora.${EXT}/service/local/artifact/maven/content?r=linshare-${CHANNEL}&g=org.linagora.linshare&a=linshare-ui-admin&v=${VERSION}-SNAPSHOT"; \
+RUN URL="https://nexus.linagora.${EXT}/service/local/artifact/maven/content?r=linshare-${CHANNEL}&g=org.linagora.linshare&a=linshare-ui-admin&v=${VERSION}"; \
 wget --no-check-certificate --progress=bar:force:noscroll \
  -O ui-admin.tar.bz2 "${URL}&p=tar.bz2" && \
 wget --no-check-certificate --progress=bar:force:noscroll \
