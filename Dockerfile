@@ -2,7 +2,7 @@ from httpd:2.4
 
 MAINTAINER LinShare <linshare@linagora.com>
 
-ARG VERSION="2.6.0"
+ARG VERSION="2.6.1"
 ARG CHANNEL="releases"
 ARG EXT="com"
 
