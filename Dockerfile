@@ -24,4 +24,4 @@ rm -f ui-admin.tar.bz2
 COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY ./linshare-ui-admin.conf /usr/local/apache2/conf/extra/linshare-ui-admin.conf
 
-EXPOSE 443
+EXPOSE 80
