@@ -1,4 +1,4 @@
-from httpd:2.4
+from httpd:2.4.28
 
 MAINTAINER LinShare <linshare@linagora.com>
 
