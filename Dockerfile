@@ -1,4 +1,4 @@
-from httpd:2.4.28
+from httpd:2.4
 
 MAINTAINER LinShare <linshare@linagora.com>
 
@@ -21,7 +21,9 @@ RUN tar -jxf ui-admin.tar.bz2 -C /usr/local/apache2/htdocs && \
 chown -R www-data /usr/local/apache2/htdocs/linshare-ui-admin && \
 rm -f ui-admin.tar.bz2
 
-COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./httpd.extra.conf /usr/local/apache2/conf/extra/httpd.extra.conf
+RUN cat /usr/local/apache2/conf/extra/httpd.extra.conf >> /usr/local/apache2/conf/httpd.conf
+
 COPY ./linshare-ui-admin.conf /usr/local/apache2/conf/extra/linshare-ui-admin.conf
 
 EXPOSE 80
