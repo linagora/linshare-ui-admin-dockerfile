@@ -1,0 +1,16 @@
+image: docker-registry.linagora.com:5000/linshare-snapshots/linshare-dind:latest
+
+stages:
+  - build
+
+build:
+  stage: build
+  tags:
+    - docker
+  services:
+      - name: docker-registry.linagora.com:5000/linshare-snapshots/linshare-dind:latest
+        alias: docker-dind
+  variables:
+      DOCKER_HOST: "tcp://docker-dind"
+  script:
+    - docker build .
