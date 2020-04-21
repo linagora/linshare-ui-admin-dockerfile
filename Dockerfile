@@ -6,6 +6,8 @@ ARG VERSION="3.3.1"
 ARG CHANNEL="releases"
 
 ENV LINSHARE_SAFE_MODE=""
+ENV LINSHARE_VERSION=$VERSION
+ENV LS_SECURE_COOKIE=TRUE
 
 RUN apt-get update && apt-get install curl bzip2 -y && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
