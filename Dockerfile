@@ -12,7 +12,7 @@ ENV LS_SECURE_COOKIE=TRUE
 RUN apt-get update && apt-get install curl bzip2 -y && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-snapshots&g=org.linagora.linshare&c=legacy&a=linshare-ui-admin&v=4.2.1-SNAPSHOT"
+ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-snapshots&g=org.linagora.linshare&c=legacy&a=linshare-ui-admin&v=4.2.3-SNAPSHOT"
 RUN curl -k -s "${URL}&p=tar.bz2" -o ui-admin.tar.bz2 && curl -k -s "${URL}&p=tar.bz2.sha1" -o ui-admin.tar.bz2.sha1 \
   && sed -i 's#^\(.*\)#\1\tui-admin.tar.bz2#' ui-admin.tar.bz2.sha1 \
   && sha1sum -c ui-admin.tar.bz2.sha1 --quiet && rm -f ui-admin.tar.bz2.sha1
