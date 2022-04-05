@@ -2,7 +2,7 @@ FROM httpd:2.4
 
 MAINTAINER LinShare <linshare@linagora.com>
 
-ARG VERSION="4.1.4"
+ARG VERSION="4.1.5"
 ARG CHANNEL="releases"
 
 ENV LINSHARE_SAFE_MODE=""
