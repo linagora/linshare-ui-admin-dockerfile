@@ -4,7 +4,7 @@ MAINTAINER LinShare <linshare@linagora.com>
 
 ARG VERSION="5.0.0"
 ARG CHANNEL="releases"
-ARG LEGACY_VERSION="4.2.6"
+ARG LEGACY_VERSION="4.2.7"
 # or 4.2.5-SNAPSHOT
 ARG LEGACY_CHANNEL="releases"
 # or snapshots
