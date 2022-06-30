@@ -4,11 +4,10 @@ MAINTAINER LinShare <linshare@linagora.com>
 
 ARG VERSION="5.0.0"
 ARG CHANNEL="releases"
-ARG LEGACY_VERSION="4.2.8-SNAPSHOT"
-# or 4.2.5-SNAPSHOT
-# ARG LEGACY_CHANNEL="releases"
-ARG LEGACY_CHANNEL="snapshots"
-# or snapshots
+ARG LEGACY_VERSION="4.2.7-legacy1"
+ARG LEGACY_CHANNEL="releases"
+# ARG LEGACY_CHANNEL="snapshots"
+# ARG LEGACY_VERSION="4.2.8-SNAPSHOT"
 
 ENV LINSHARE_SAFE_MODE=""
 ENV LINSHARE_VERSION=$VERSION
@@ -18,7 +17,7 @@ ENV LS_SECURE_COOKIE=TRUE
 RUN apt-get update && apt-get install curl bzip2 -y && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-${LEGACY_CHANNEL}&g=org.linagora.linshare&c=legacy&a=linshare-ui-admin&v=${LINSHARE_LEGACY_VERSION}"
+ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-${LEGACY_CHANNEL}&g=org.linagora.linshare&c=legacy&a=linshare-ui-admin&v=${LEGACY_VERSION}"
 RUN curl -k -s "${URL}&p=tar.bz2" -o ui-admin.tar.bz2 && curl -k -s "${URL}&p=tar.bz2.sha1" -o ui-admin.tar.bz2.sha1 \
   && sed -i 's#^\(.*\)#\1\tui-admin.tar.bz2#' ui-admin.tar.bz2.sha1 \
   && sha1sum -c ui-admin.tar.bz2.sha1 --quiet && rm -f ui-admin.tar.bz2.sha1
