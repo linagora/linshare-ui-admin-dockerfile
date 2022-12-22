@@ -2,9 +2,9 @@ FROM httpd:2.4
 
 MAINTAINER LinShare <linshare@linagora.com>
 
-ARG VERSION="6.0.0"
+ARG VERSION="6.0.1"
 ARG CHANNEL="releases"
-ARG LEGACY_VERSION="4.2.7-legacy1"
+ARG LEGACY_VERSION="4.2.8-legacy"
 ARG LEGACY_CHANNEL="releases"
 # ARG LEGACY_CHANNEL="snapshots"
 # ARG LEGACY_VERSION="4.2.8-SNAPSHOT"
