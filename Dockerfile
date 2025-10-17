@@ -17,7 +17,7 @@ ENV LS_SECURE_COOKIE=TRUE
 RUN apt-get update && apt-get install curl bzip2 -y && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-${LEGACY_CHANNEL}&g=org.linagora.linshare&c=legacy&a=linshare-ui-admin&v=${LEGACY_VERSION}"
+ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-${CHANNEL}&g=org.linagora.linshare&a=linshare-ui-admin&v=${VERSION}"
 RUN curl -k -s "${URL}&p=tar.bz2" -o ui-admin.tar.bz2 && curl -k -s "${URL}&p=tar.bz2.sha1" -o ui-admin.tar.bz2.sha1 \
   && sed -i 's#^\(.*\)#\1\tui-admin.tar.bz2#' ui-admin.tar.bz2.sha1 \
   && sha1sum -c ui-admin.tar.bz2.sha1 --quiet && rm -f ui-admin.tar.bz2.sha1
@@ -30,15 +30,5 @@ COPY ./httpd.extra.conf /usr/local/apache2/conf/extra/httpd.extra.conf
 RUN cat /usr/local/apache2/conf/extra/httpd.extra.conf >> /usr/local/apache2/conf/httpd.conf
 
 COPY ./linshare-ui-admin.conf /usr/local/apache2/conf/extra/linshare-ui-admin.conf
-
-ENV URL="https://nexus.linagora.com/service/local/artifact/maven/content?r=linshare-${CHANNEL}&g=org.linagora.linshare&a=linshare-ui-admin&v=${VERSION}"
-RUN curl -k -s "${URL}&p=tar.bz2" -o ui-admin.tar.bz2 && curl -k -s "${URL}&p=tar.bz2.sha1" -o ui-admin.tar.bz2.sha1 \
-  && sed -i 's#^\(.*\)#\1\tui-admin.tar.bz2#' ui-admin.tar.bz2.sha1 \
-  && sha1sum -c ui-admin.tar.bz2.sha1 --quiet && rm -f ui-admin.tar.bz2.sha1
-
-RUN tar -jxf ui-admin.tar.bz2 -C /usr/local/apache2/htdocs/linshare-ui-admin && \
-chown -R www-data /usr/local/apache2/htdocs/linshare-ui-admin && \
-mv -v /usr/local/apache2/htdocs/linshare-ui-admin/linshare-ui-admin /usr/local/apache2/htdocs/linshare-ui-admin/new && \
-rm -f ui-admin.tar.bz2
 
 EXPOSE 80
