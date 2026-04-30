@@ -8,11 +8,13 @@ $ docker build --build-arg VERSION="LATEST" --build-arg CHANNEL="releases" -t li
 
 #### How to run the container
 
+The container serves plain HTTP on port `8080` and runs as the unprivileged `www-data` user. It does **not** terminate TLS — put an HTTPS-terminating reverse proxy (nginx, traefik, haproxy, a cloud load balancer, …) in front of it. If `LS_SECURE_COOKIE=TRUE` (the default), that upstream TLS terminator is required for sessions to work, since the `JSESSIONID` cookie is marked `Secure`.
+
 ```bash
 $ docker run -d \
 -e EXTERNAL_URL=<wanted_FQDN> \
 -e TOMCAT_URL=<tomcat-ip> \
--e TOMCAT_PORT=<tomcat-port>
--p 443:443 \
+-e TOMCAT_PORT=<tomcat-port> \
+-p 8080:8080 \
 linagora/linshare-ui-admin
 ```

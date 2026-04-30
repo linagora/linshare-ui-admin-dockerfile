@@ -1,6 +1,6 @@
 FROM httpd:2.4
 
-MAINTAINER LinShare <linshare@linagora.com>
+LABEL maintainer="LinShare <linshare@linagora.com>"
 
 ARG VERSION="6.5.3"
 ARG CHANNEL="releases"
@@ -31,4 +31,9 @@ RUN cat /usr/local/apache2/conf/extra/httpd.extra.conf >> /usr/local/apache2/con
 
 COPY ./linshare-ui-admin.conf /usr/local/apache2/conf/extra/linshare-ui-admin.conf
 
-EXPOSE 80
+RUN sed -i 's/^Listen 80$/Listen 8080/' /usr/local/apache2/conf/httpd.conf && \
+    chown -R www-data /usr/local/apache2/logs
+
+USER www-data
+
+EXPOSE 8080
