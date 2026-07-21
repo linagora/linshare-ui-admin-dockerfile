@@ -2,7 +2,7 @@ FROM httpd:2.4
 
 LABEL maintainer="LinShare <linshare@linagora.com>"
 
-ARG VERSION="6.5.3"
+ARG VERSION="6.5.4"
 ARG CHANNEL="releases"
 ARG LEGACY_VERSION="4.2.7-legacy1"
 ARG LEGACY_CHANNEL="releases"
